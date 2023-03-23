@@ -1,15 +1,27 @@
-public class teacher extends person{
+public class Teacher extends Person {
+    private final int teacherId;
+    private static int currentId;
     private double salary;
     private int subjectId;
 
-    teacher(){
+    Teacher(){
+        teacherId = currentId + 1;
+        currentId++;
+
         salary = 0.0;
         subjectId = 0;
     }
 
-    teacher(double salary, int subjectId){
+    Teacher(double salary, int subjectId){
+        teacherId = currentId + 1;
+        currentId++;
+
         this.salary = salary;
         this.subjectId = subjectId;
+    }
+
+    public static void setCurrentId(int id){
+        currentId = id;
     }
 
     public double getSalary() {

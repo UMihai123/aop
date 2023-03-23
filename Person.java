@@ -1,19 +1,19 @@
-public class person {
+public class Person {
     private String firstName;
     private String lastName;
     private String email;
     private int age;
-    private location address;
+    private Location address;
 
-    person(){
+    Person(){
         firstName = "";
         lastName = "";
         email = "";
         age = 0;
-        address = new location();
+        address = new Location();
     }
 
-    person(String firstName, String lastName, String email, int age, location address){
+    Person(String firstName, String lastName, String email, int age, Location address){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -53,11 +53,11 @@ public class person {
         this.age = age;
     }
 
-    public location getAddress() {
+    public Location getAddress() {
         return address;
     }
 
-    public void setAddress(location address) {
+    public void setAddress(Location address) {
         this.address = address;
     }
 

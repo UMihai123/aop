@@ -1,5 +1,6 @@
-public class cLaSs {
-    private int class_id;
+public class Class {
+    private final int classroom_id;
+    private static int currentId;
 
     private int year;
 
@@ -9,28 +10,32 @@ public class cLaSs {
 
     private String profile;
 
-    cLaSs(){
-        class_id = 0;
+    Class(){
+        classroom_id = currentId + 1;
+        currentId++;
+
         year = 0;
         letter = ' ';
         number_of_students = 0;
         profile = "";
     }
 
-    cLaSs(int class_id, int year, char letter, int number_of_students, String profile){
-        this.class_id = class_id;
+    Class(int year, char letter, int number_of_students, String profile){
+        this.classroom_id = currentId + 1;
+        currentId++;
+
         this.year = year;
         this.letter = letter;
         this.number_of_students = number_of_students;
         this.profile = profile;
     }
 
-    public int getClass_id() {
-        return class_id;
+    public static void setCurrentId(int id){
+        currentId = id;
     }
 
-    public void setClass_id(int class_id) {
-        this.class_id = class_id;
+    public int getClass_id() {
+        return classroom_id;
     }
 
     public int getYear() {
@@ -67,6 +72,6 @@ public class cLaSs {
 
     @Override
     public String toString(){
-        return class_id + "\n" + year + "\n" + letter + "\n" + number_of_students + "\n" + profile;
+        return classroom_id + "\n" + year + "\n" + letter + "\n" + number_of_students + "\n" + profile;
     }
 }

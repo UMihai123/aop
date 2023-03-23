@@ -1,8 +1,9 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class classbook {
-    private int classbook_id;
+public class ClassBookPage {
+    private final int classbook_id;
+    private static int currentId;
 
     private int student_id;
 
@@ -12,10 +13,12 @@ public class classbook {
 
     private int absences;
 
-    private float average_mark;
+    private double average_mark;
 
-    classbook(){
-        classbook_id = 0;
+    ClassBookPage(){
+        classbook_id = currentId + 1;
+        currentId++;
+
         student_id = 0;
         subject_id = 0;
         grades = new ArrayList<Integer>();
@@ -23,8 +26,10 @@ public class classbook {
         average_mark = 0;
     }
 
-    classbook(int classbook_id, int student_id, int subject_id, List<Integer> grades, int absences, float average_mark){
-        this.classbook_id = classbook_id;
+    ClassBookPage(int student_id, int subject_id, List<Integer> grades, int absences, float average_mark){
+        this.classbook_id = currentId + 1;
+        currentId++;
+
         this.student_id = student_id;
         this.subject_id = subject_id;
         this.grades = grades;
@@ -32,14 +37,21 @@ public class classbook {
         this.average_mark = average_mark;
     }
 
+    public static void setCurrentId(int id){
+        currentId = id;
+    }
+
+    public void CalculateAverageMark(){
+        for (Integer grade : grades) {
+            average_mark += grade;
+        }
+
+        average_mark = average_mark/grades.size();
+    }
+
     public int getClassbook_id() {
         return classbook_id;
     }
-
-    public void setClassbook_id(int classbook_id) {
-        this.classbook_id = classbook_id;
-    }
-
     public int getStudent_id() {
         return student_id;
     }
@@ -72,7 +84,7 @@ public class classbook {
         this.absences = absences;
     }
 
-    public float getAverage_mark() {
+    public double getAverage_mark() {
         return average_mark;
     }
 

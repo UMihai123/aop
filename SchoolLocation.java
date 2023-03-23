@@ -1,14 +1,14 @@
-public class schoolLocation extends location{
+public class SchoolLocation extends Location {
 
     private String seismicRisk;
     private double area;
 
-    schoolLocation(){
+    SchoolLocation(){
         seismicRisk = "";
         area = 0.0;
     }
 
-    schoolLocation(String seismicRisk, double area){
+    SchoolLocation(String seismicRisk, double area){
         this.seismicRisk = seismicRisk;
         this.area = area;
     }

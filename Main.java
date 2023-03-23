@@ -4,6 +4,18 @@ public class Main {
         PrintOptions();
     }
 
+    private static Controller _controller;
+
+    static{
+        Student.setCurrentId(0);
+        Subject.setCurrentId(0);
+        School.setCurrentId(0);
+        Teacher.setCurrentId(0);
+        ClassBookPage.setCurrentId(0);
+        Class.setCurrentId(0);
+        Location.setCurrentId(0);
+    }
+
     public static void PrintOptions(){
         System.out.println("*********************");
         System.out.println("****   Welcome   ****");
@@ -24,11 +36,11 @@ public class Main {
             switch (option) {
                 case "CreateSchool":
                     System.out.println("Test CreateSchool");
-                    //Apelare controller create school
+                    _controller.CreateSchool();
                     break;
                 case "SelectSchool":
                     System.out.println("Test SelectSchool");
-                    //Apelare controller select school
+                    _controller.ShowSchools();
                     break;
                 case "Exit":
                     System.exit(0);
@@ -37,6 +49,5 @@ public class Main {
                     System.out.println("This option doesn't exist, please enter a correct option.\n");
             }
         }
-
     }
 }

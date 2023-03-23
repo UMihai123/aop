@@ -1,33 +1,37 @@
-public class subject {
-    private int subject_id;
-
+public class Subject {
+    private final int subject_id;
+    private static int currentId;
     private String subject_name;
 
     private  int classes_per_week;
 
     private  Boolean has_exam;
 
-    subject(){
-        subject_id = 0;
+    Subject(){
+        subject_id = currentId + 1;
+        currentId++;
         subject_name = "";
         classes_per_week = 0;
         has_exam = false;
     }
 
-    subject(int subject_id, String subject_name, int classes_per_week, Boolean has_exam){
-        this.subject_id = subject_id;
+    Subject(String subject_name, int classes_per_week, Boolean has_exam){
+        subject_id = currentId + 1;
+        currentId++;
+
         this.subject_name = subject_name;
         this.classes_per_week = classes_per_week;
         this.has_exam = has_exam;
+    }
+
+    public static void setCurrentId(int id){
+        currentId = id;
     }
 
     public int getSubject_id() {
         return subject_id;
     }
 
-    public void setSubject_id(int subjectId) {
-        this.subject_id = subjectId;
-    }
 
     public String getSubject_name() {
         return subject_name;

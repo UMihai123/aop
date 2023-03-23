@@ -1,17 +1,27 @@
-public class location {
+public class Location {
+    private final int locationId;
+    private static int currentId;
     private String street;
     private String city;
 
     private int number;
 
-    location(){
+    Location(){
+        locationId = ++currentId;
+
         street = "";
         city = "";
     }
 
-    location(String street, String city){
+    Location(String street, String city){
+        locationId = ++currentId;
+
         this.street = street;
         this.city = city;
+    }
+
+    public static void setCurrentId(int id){
+        currentId = id;
     }
 
     public String getStreet() {
