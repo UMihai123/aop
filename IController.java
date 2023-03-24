@@ -20,6 +20,4 @@ public interface IController {
     void CreateTeachers();
 
     void CreateSubject();
-
-    void ShowTopStudents(int numberToShow);
 }

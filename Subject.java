@@ -58,10 +58,10 @@ public class Subject {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return  "The name of the subject is: " + subject_name + "\n" +
                 "The number of classes per week is: " + classes_per_week + "\n" +
-                ((has_exam)? “Yes, it does have an exam” : “No, it does not have an exam”)
-
+                ((has_exam)? "Yes, it does have an exam" : "No, it does not have an exam");
     }
+
 }

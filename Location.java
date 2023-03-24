@@ -3,7 +3,6 @@ public class Location {
     private static int currentId;
     private String street;
     private String city;
-
     private int number;
 
     Location(){
@@ -13,11 +12,12 @@ public class Location {
         city = "";
     }
 
-    Location(String street, String city){
+    Location(String street, String city, int number){
         locationId = ++currentId;
 
         this.street = street;
         this.city = city;
+        this.number = number;
     }
 
     public static void setCurrentId(int id){

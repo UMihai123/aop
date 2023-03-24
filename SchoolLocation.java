@@ -8,7 +8,8 @@ public class SchoolLocation extends Location {
         area = 0.0;
     }
 
-    SchoolLocation(String seismicRisk, double area){
+    SchoolLocation(Location location, String seismicRisk, double area){
+        super(location.getStreet(), location.getCity(), location.getNumber());
         this.seismicRisk = seismicRisk;
         this.area = area;
     }

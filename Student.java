@@ -3,6 +3,7 @@ import java.util.List;
 public class Student extends Person {
     private final int studentId;
     private static int currentId;
+
     private double yearlyMark;
     private int classId;
     private List<ClassBookPage> grades;
