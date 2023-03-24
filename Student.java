@@ -68,6 +68,10 @@ public class Student extends Person {
     }
 
     public String toString(){
-        return getFirstName() + " " + getLastName() + "\n" + getEmail() + "\n" + getAge() + "\n" + yearlyMark + "\n" + "Part of class with id: " + classId + "\n";
+        return "Student's name is: " + getFirstName() + " " + getLastName() + "\n" +
+                "Student's e-mail is: " + getEmail() + "\n" +
+                "Student's age is: " + getAge() + "\n" +
+                "Student's yearly mark is: " + yearlyMark + "\n" +
+                "Part of class with id: " + classId + "\n";
     }
 }

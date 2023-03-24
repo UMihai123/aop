@@ -72,6 +72,9 @@ public class Class {
 
     @Override
     public String toString(){
-        return classroom_id + "\n" + year + "\n" + letter + "\n" + number_of_students + "\n" + profile;
+        return "The class is in the year" + year +
+                "and has the letter" + letter + "\n" +
+                "The class has" + number_of_students + "students" +
+                "and is of the" + profile + "profile";
     }
 }

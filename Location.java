@@ -50,6 +50,6 @@ public class Location {
 
     @Override
     public String toString(){
-        return this.city + "\n" + this.street + "\n";
+        return "The address is in the city of" + this.city + "on street " + this.street + "\n";
     }
 }

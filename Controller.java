@@ -13,29 +13,54 @@ public class Controller implements IController{
         }
     }
 
+    private List<Class> classes;
     @Override
     public void ShowClasses() {
-        //TODO NAE
+        int i = 1;
+        for(Class clasa : classes){
+            System.out.println(i++ + ".\n");
+            System.out.println(clasa);
+        }
     }
 
+    private List<Student> students;
     @Override
     public void ShowStudents() {
-        //TODO NAE
+        int i = 1;
+        for(Student student : students){
+            System.out.println(i++ + ".\n");
+            System.out.println(student);
+        }
     }
 
+    private List<ClassBookPage> classBookPages;
     @Override
     public void ShowClassBookPages() {
-        //TODO NAE
+        int i = 1;
+        for(ClassBookPage classBookPage : classBookPages){
+            System.out.println(i++ + ".\n");
+            System.out.println(classBookPage);
+        }
     }
 
+    private List<Teacher> teachers;
     @Override
     public void ShowTeachers() {
-        //TODO NAE
+        int i = 1;
+        for(Teacher teacher : teachers){
+            System.out.println(i++ + ".\n");
+            System.out.println(teacher);
+        }
     }
 
+    private List<Subject> subjects;
     @Override
     public void ShowSubjects() {
-        //TODO NAE
+        int i = 1;
+        for(Subject subject : subjects){
+            System.out.println(i++ + ".\n");
+            System.out.println(subject);
+        }
     }
 
     @Override
