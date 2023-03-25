@@ -32,7 +32,7 @@ public class SchoolLocation extends Location {
 
     @Override
     public String toString(){
-        return "The School is situated in" + getCity() + "on street" + getStreet() + "number" + getNumber() +
-                "with the seismic Risk of" + seismicRisk + "and an area of" + area;
+        return "The School is situated in " + getCity() + " on street " + getStreet() + " number " + getNumber() +
+                " with the seismic Risk of " + seismicRisk + " and an area of " + area;
     }
 }
