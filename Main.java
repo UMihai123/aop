@@ -1,10 +1,12 @@
 import java.util.Scanner;
 public class Main {
     public static void main(String args[]) {
-        PrintOptions();
+        PrintInitialOptions();
     }
 
-    private static Controller _controller;
+    private static Controller _controller = new Controller();
+    private static Scanner sc = new Scanner(System.in);
+    private static String option;
 
     static{
         Student.setCurrentId(0);
@@ -16,30 +18,49 @@ public class Main {
         Location.setCurrentId(0);
     }
 
-    public static void PrintOptions(){
+    private static void PrintInitialOptions(){
         System.out.println("*********************");
         System.out.println("****   Welcome   ****");
         System.out.println("*********************\n");
 
-        System.out.println("Type out what command you want to execute:");
-        System.out.println("1. Create a school(CreateSchool).");
-        System.out.println("2. Select which school you want to work with(SelectSchool).");
-        System.out.println("3. Exit the application(Exit).");
-
-        Scanner sc = new Scanner(System.in);
-
-        String option;
-
         while(true){
+            System.out.println("Type out what command you want to execute:");
+            System.out.println("1. Select which school you want see(SelectSchool).");
+            System.out.println("2. Add a new school(AddSchool).");
+            System.out.println("3. Exit the application(Exit).");
+
             option = sc.nextLine();
 
             switch (option) {
-                case "CreateSchool":
-                    System.out.println("Test CreateSchool");
+                case "AddSchool":
                     _controller.CreateSchool();
                     break;
                 case "SelectSchool":
-                    System.out.println("Test SelectSchool");
+                    _controller.ShowSchools();
+                    break;
+                case "Exit":
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("This option doesn't exist, please enter a correct option.\n");
+            }
+        }
+    }
+
+    private static void PrintEnterSchool(){
+        while(true){
+            System.out.println("1. See all calsses(SeeClasses).");
+            System.out.println("1. Add a new class(AddClass).");
+            System.out.println("1. See all subjects(SeeSubjects).");
+            System.out.println("4. Add a new subject(AddSubject)");
+
+            option = sc.nextLine();
+
+            switch (option) {
+                case "SeeClasses":
+                    _controller.CreateSchool();
+                    break;
+                case "SelectSchool":
                     _controller.ShowSchools();
                     break;
                 case "Exit":

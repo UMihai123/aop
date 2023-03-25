@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -9,30 +10,48 @@ public class Controller implements IController{
     private List<Teacher> teachers;
     private List<Subject> subjects;
     private List<Class> classes;
-    Scanner input = new Scanner(System.in);
+    Scanner input;
 
+    Controller(){
+        schools = new ArrayList<>();
+        students = new ArrayList<>();
+        classBookPages = new ArrayList<>();
+        teachers = new ArrayList<>();
+        subjects = new ArrayList<>();
+        classes = new ArrayList<>();
 
-    private SchoolLocation ReadSchoolLocation(Scanner input){
-        Location location = ReadLocation(input);
+        input = new Scanner(System.in);
+    }
+
+    private SchoolLocation ReadSchoolLocation(){
+        Location location = ReadLocation();
+        System.out.println("Enter the seismic risk: ");
         String seismicRisk = input.nextLine();
+        System.out.println("Enter the area: ");
         double area = input.nextDouble();
+        input.nextLine();
 
         return new SchoolLocation(location, seismicRisk, area);
     }
 
-    private Location ReadLocation(Scanner input){
+    private Location ReadLocation(){
+        System.out.println("Enter the street: ");
         String street = input.nextLine();
+        System.out.println("Enter the city: ");
         String city = input.nextLine();
+        System.out.println("Enter the number: ");
         int number = input.nextInt();
+        input.nextLine();
 
         return new Location(street, city, number);
     }
 
-    private List<ClassBookPage> ReadGrades(Scanner input, int studentId){
+    private List<ClassBookPage> ReadGrades(int studentId){
         List<ClassBookPage> grades = null;
         for(Subject subject : subjects){
             System.out.println("What will be the number of grades for the subject: " + subject.getSubject_name());
             int total = input.nextInt();
+            input.nextLine();
             System.out.println("What are the grades?");
             List<Integer> g = null;
             for(;total >= 0; total--) {
@@ -40,6 +59,7 @@ public class Controller implements IController{
             }
             System.out.println("How many absences does the student have?");
             int absences = input.nextInt();
+            input.nextLine();
 
             ClassBookPage grade = new ClassBookPage();
             grade.setGrades(g);
@@ -53,7 +73,7 @@ public class Controller implements IController{
         return grades;
     }
 
-    private Person ReadPerson(Scanner input){
+    private Person ReadPerson(){
         System.out.println("What is the first name?");
         String firstName = input.nextLine();
         System.out.println("What is the last name?");
@@ -62,9 +82,82 @@ public class Controller implements IController{
         String email = input.nextLine();
         System.out.println("What is the age?");
         int age = input.nextInt();
-        Location location = ReadLocation(input);
+        input.nextLine();
+        Location location = ReadLocation();
 
         return new Person(firstName, lastName, email, age, location);
+    }
+
+    private Student ReadStudent(){
+        Person person = ReadPerson();
+        System.out.println("Enter the id of the class in which the student is: ");
+        int classId = input.nextInt();
+        input.nextLine();
+
+        Student student = new Student();
+        student.setClassId(classId);
+        student.CalculateYearlyMark();
+        student.setFirstName(person.getFirstName());
+        student.setLastName(person.getLastName());
+        student.setEmail(person.getEmail());
+        student.setAge(person.getAge());
+        student.setAddress(person.getAddress());
+        List<ClassBookPage> grades = ReadGrades(student.getStudentId());
+        student.setGrades(grades);
+
+        return student;
+    }
+
+    private Class ReadClass(){
+        System.out.println("Enter the year of the class: ");
+        int year = input.nextInt();
+        input.nextLine();
+        System.out.println("Enter the letter of the class: ");
+        char letter = input.next().charAt(0);
+        input.nextLine();
+        System.out.println("Enter the number of students of the class: ");
+        int nrOfStudents = input.nextInt();
+        input.nextLine();
+        System.out.println("Enter the profile of the class: ");
+        String profile = input.nextLine();
+
+        Class c = new Class(year, letter, nrOfStudents, profile);
+        return c;
+    }
+
+    private Teacher ReadTeacher(){
+        Person person = ReadPerson();
+        System.out.println("Enter the teachers salary: ");
+        double salary = input.nextDouble();
+        input.nextLine();
+        System.out.println("Enter the id of the subject that he teaches: ");
+        int subjectId = input.nextInt();
+        input.nextLine();
+
+        Teacher teacher = new Teacher();
+        teacher.setSalary(salary);
+        teacher.setSubjectId(subjectId);
+        teacher.setFirstName(person.getFirstName());
+        teacher.setLastName(person.getLastName());
+        teacher.setEmail(person.getEmail());
+        teacher.setAge(person.getAge());
+        teacher.setAddress(person.getAddress());
+
+        return teacher;
+    }
+
+    private Subject ReadSubject(){
+        System.out.println("Enter the subjects name: ");
+        String name = input.nextLine();
+        System.out.println("Enter the number of hours per week: ");
+        int classesPerWeek = input.nextInt();
+        input.nextLine();
+        System.out.println("Does the subject have an exam? True/False");
+        boolean hasExam = input.nextBoolean();
+        input.nextLine();
+
+        Subject s = new Subject(name, classesPerWeek, hasExam);
+        return s;
     }
 
 
@@ -124,65 +217,29 @@ public class Controller implements IController{
 
     @Override
     public void CreateSchool() {
+        System.out.println("Enter the name of the school: ");
         String name = input.nextLine();
 
-        schools.add(new School(name, ReadSchoolLocation(input)));
+        schools.add(new School(name, ReadSchoolLocation()));
     }
 
     @Override
     public void CreateClass() {
-        int year = input.nextInt();
-        char letter = input.next().charAt(0);
-        int nrOfStudents = input.nextInt();
-        String profile = input.nextLine();
-
-        classes.add(new Class(year, letter, nrOfStudents, profile));
+        classes.add(ReadClass());
     }
 
     @Override
     public void CreateStudent() {
-        Person person = ReadPerson(input);
-        double yearlyMark = input.nextDouble();
-        int classId = input.nextInt();
-
-        Student student = new Student();
-        student.setClassId(classId);
-        student.setYearlyMark(yearlyMark);
-        student.setFirstName(person.getFirstName());
-        student.setLastName(person.getLastName());
-        student.setEmail(person.getEmail());
-        student.setAge(person.getAge());
-        student.setAddress(person.getAddress());
-        List<ClassBookPage> grades = ReadGrades(input, student.getStudentId());
-        student.setGrades(grades);
-
-        students.add(student);
+        students.add(ReadStudent());
     }
 
     @Override
     public void CreateTeachers() {
-        Person person = ReadPerson(input);
-        double salary = input.nextDouble();
-        int subjectId = input.nextInt();
-
-        Teacher teacher = new Teacher();
-        teacher.setSalary(salary);
-        teacher.setSubjectId(subjectId);
-        teacher.setFirstName(person.getFirstName());
-        teacher.setLastName(person.getLastName());
-        teacher.setEmail(person.getEmail());
-        teacher.setAge(person.getAge());
-        teacher.setAddress(person.getAddress());
-
-        teachers.add(teacher);
+        teachers.add(ReadTeacher());
     }
 
     @Override
     public void CreateSubject() {
-        String name = input.nextLine();
-        int classesPerWeek = input.nextInt();
-        boolean hasExam = input.nextBoolean();
-
-        subjects.add(new Subject(name, classesPerWeek, hasExam));
+        subjects.add(ReadSubject());
     }
 }

@@ -1,10 +1,9 @@
 public class Subject {
     private final int subject_id;
     private static int currentId;
+
     private String subject_name;
-
     private  int classes_per_week;
-
     private  Boolean has_exam;
 
     Subject(){
