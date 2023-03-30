@@ -12,17 +12,6 @@ public class Class {
 
     private String profile;
 
-    Class(){
-        classroom_id = currentId + 1;
-        currentId++;
-
-        schoolId = 0;
-        year = 0;
-        letter = ' ';
-        number_of_students = 0;
-        profile = "";
-    }
-
     Class(int schoolId, int year, char letter, int number_of_students, String profile){
         this.classroom_id = currentId + 1;
         currentId++;
@@ -37,11 +26,6 @@ public class Class {
     public static void setCurrentId(int id){
         currentId = id;
     }
-
-    public int getClass_id() {
-        return classroom_id;
-    }
-
     public int getYear() {
         return year;
     }

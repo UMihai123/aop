@@ -2,15 +2,15 @@ import java.util.List;
 
 public class Student extends Person {
     private final int studentId;
-    private static int currentId;
+    private static int CURRENT_ID;
 
     private double yearlyMark;
     private int classId;
     private List<ClassBookPage> grades;
 
     Student(){
-        studentId = currentId + 1;
-        currentId ++;
+        studentId = CURRENT_ID + 1;
+        CURRENT_ID++;
 
         yearlyMark = 0.0;
         classId = 0;
@@ -18,8 +18,8 @@ public class Student extends Person {
     }
 
     Student(double yearlyMark, int classId, List<ClassBookPage> grades){
-        studentId = currentId + 1;
-        currentId ++;
+        studentId = CURRENT_ID + 1;
+        CURRENT_ID++;
 
         this.yearlyMark = yearlyMark;
         this.classId = classId;
@@ -41,7 +41,7 @@ public class Student extends Person {
     }
 
     public static void setCurrentId(int id){
-        currentId = id;
+        CURRENT_ID = id;
     }
 
     public int getStudentId() {

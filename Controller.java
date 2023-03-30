@@ -35,12 +35,6 @@ public class Controller implements IController{
     public int GetNrOfStudents(){
         return students.size();
     }
-    public int GetNrOfTeachers(){
-        return teachers.size();
-    }
-    public int GetNrOfCBPs(){
-        return classBookPages.size();
-    }
 
     private SchoolLocation ReadSchoolLocation(){
         Location location = ReadLocation();
