@@ -1,8 +1,13 @@
+package service;
+
+import models.*;
+
+import java.lang.Class;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Controller implements IController{
+public class Controller implements IController {
 
     private List<School> schools;
     private List<Student> students;
@@ -12,7 +17,7 @@ public class Controller implements IController{
     private List<Class> classes;
     private Scanner input;
 
-    Controller(){
+    public Controller(){
         schools = new ArrayList<>();
         students = new ArrayList<>();
         classBookPages = new ArrayList<>();

@@ -1,3 +1,5 @@
+package models;
+
 public class SchoolLocation extends Location {
 
     private String seismicRisk;
@@ -8,7 +10,7 @@ public class SchoolLocation extends Location {
         area = 0.0;
     }
 
-    SchoolLocation(Location location, String seismicRisk, double area){
+    public SchoolLocation(Location location, String seismicRisk, double area){
         super(location.getStreet(), location.getCity(), location.getNumber());
         this.seismicRisk = seismicRisk;
         this.area = area;
@@ -32,7 +34,7 @@ public class SchoolLocation extends Location {
 
     @Override
     public String toString(){
-        return "The School is situated in " + getCity() + " on street " + getStreet() + " number " + getNumber() +
+        return "The models.School is situated in " + getCity() + " on street " + getStreet() + " number " + getNumber() +
                 " with the seismic Risk of " + seismicRisk + " and an area of " + area;
     }
 }

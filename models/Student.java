@@ -1,3 +1,5 @@
+package models;
+
 import java.util.List;
 
 public class Student extends Person {
@@ -8,7 +10,7 @@ public class Student extends Person {
     private int classId;
     private List<ClassBookPage> grades;
 
-    Student(){
+    public Student(){
         studentId = CURRENT_ID + 1;
         CURRENT_ID++;
 
@@ -73,10 +75,10 @@ public class Student extends Person {
     }
 
     public String toString(){
-        return "Student's name is: " + getFirstName() + " " + getLastName() + "\n" +
-                "Student's e-mail is: " + getEmail() + "\n" +
-                "Student's age is: " + getAge() + "\n" +
-                "Student's yearly mark is: " + yearlyMark + "\n" +
+        return "models.Student's name is: " + getFirstName() + " " + getLastName() + "\n" +
+                "models.Student's e-mail is: " + getEmail() + "\n" +
+                "models.Student's age is: " + getAge() + "\n" +
+                "models.Student's yearly mark is: " + yearlyMark + "\n" +
                 "Part of class with id: " + classId + "\n";
     }
 }

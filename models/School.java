@@ -1,3 +1,8 @@
+package models;
+
+import models.Location;
+import models.SchoolLocation;
+
 public class School {
     private final int schoolId;
     private static int currentId;
@@ -13,7 +18,7 @@ public class School {
         address = new SchoolLocation();
     }
 
-    School(String name, SchoolLocation address){
+    public School(String name, SchoolLocation address){
         schoolId = currentId + 1;
         currentId++;
 

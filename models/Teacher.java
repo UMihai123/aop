@@ -1,10 +1,14 @@
+package models;
+
+import models.Person;
+
 public class Teacher extends Person {
     private final int teacherId;
     private static int currentId;
     private double salary;
     private int subjectId;
 
-    Teacher(){
+    public Teacher(){
         teacherId = currentId + 1;
         currentId++;
 
@@ -42,10 +46,10 @@ public class Teacher extends Person {
 
     @Override
     public String toString(){
-        return "Teacher's name is: " + getFirstName() + " " + getLastName() + "\n" +
-                "Teacher's e-mail is: " + getEmail() + "\n" +
-                "Teacher's age is: " + getAge() + "\n" +
-                "Teacher's address is: " + getAddress() + "\n" +
-                "Teacher's salary is: " + salary;
+        return "models.Teacher's name is: " + getFirstName() + " " + getLastName() + "\n" +
+                "models.Teacher's e-mail is: " + getEmail() + "\n" +
+                "models.Teacher's age is: " + getAge() + "\n" +
+                "models.Teacher's address is: " + getAddress() + "\n" +
+                "models.Teacher's salary is: " + salary;
     }
 }

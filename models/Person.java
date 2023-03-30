@@ -1,3 +1,7 @@
+package models;
+
+import models.Location;
+
 public class Person {
     private String firstName;
     private String lastName;
@@ -13,7 +17,7 @@ public class Person {
         address = new Location();
     }
 
-    Person(String firstName, String lastName, String email, int age, Location address){
+    public Person(String firstName, String lastName, String email, int age, Location address){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -63,9 +67,9 @@ public class Person {
 
     @Override
     public String toString(){
-        return "Person's name is: " + firstName + " " + lastName + "\n" +
-                "Person's e-mail is: " + email + "\n" +
-                "Person's age is: " + age + "\n" +
-                "Person's address is: " + address;
+        return "models.Person's name is: " + firstName + " " + lastName + "\n" +
+                "models.Person's e-mail is: " + email + "\n" +
+                "models.Person's age is: " + age + "\n" +
+                "models.Person's address is: " + address;
     }
 }

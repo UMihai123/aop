@@ -1,3 +1,5 @@
+package models;
+
 public class Class {
     private final int classroom_id;
     private static int currentId;

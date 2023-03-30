@@ -1,3 +1,5 @@
+package models;
+
 public class Subject {
     private final int subject_id;
     private static int currentId;
@@ -17,7 +19,7 @@ public class Subject {
         has_exam = false;
     }
 
-    Subject(int schoolId, String subject_name, int classes_per_week, Boolean has_exam){
+    public Subject(int schoolId, String subject_name, int classes_per_week, Boolean has_exam){
         subject_id = currentId + 1;
         currentId++;
 

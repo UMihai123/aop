@@ -1,3 +1,5 @@
+package models;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +17,7 @@ public class ClassBookPage {
 
     private double average_mark;
 
-    ClassBookPage(){
+    public ClassBookPage(){
         classbook_id = currentId + 1;
         currentId++;
 

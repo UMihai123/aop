@@ -1,3 +1,5 @@
+package models;
+
 public class Location {
     private final int locationId;
     private static int currentId;
@@ -12,7 +14,7 @@ public class Location {
         city = "";
     }
 
-    Location(String street, String city, int number){
+    public Location(String street, String city, int number){
         locationId = ++currentId;
 
         this.street = street;
