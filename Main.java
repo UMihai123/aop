@@ -25,7 +25,7 @@ public class Main {
 
         while(true){
             System.out.println("Type out what command you want to execute:");
-            System.out.println("1. Select which school you want see(SelectSchool).");
+            System.out.println("1. Select which school you want to visit(SelectSchool).");
             System.out.println("2. Add a new school(AddSchool).");
             System.out.println("3. Exit the application(Exit).");
 
@@ -37,6 +37,14 @@ public class Main {
                     break;
                 case "SelectSchool":
                     _controller.ShowSchools();
+                    System.out.println("Enter the number of the school you want.");
+                    int op;
+                    op = sc.nextInt();
+                    sc.nextLine();
+                    if(op > _controller.GetNrOfSchools() || op < 0)
+                        System.out.println("There is no school with that number.");
+                    else
+                        PrintEnterSchool(op);
                     break;
                 case "Exit":
                     System.exit(0);
@@ -47,21 +55,44 @@ public class Main {
         }
     }
 
-    private static void PrintEnterSchool(){
-        while(true){
+    private static void PrintEnterSchool(int schoolId) {
+        while (true) {
             System.out.println("1. See all calsses(SeeClasses).");
-            System.out.println("1. Add a new class(AddClass).");
-            System.out.println("1. See all subjects(SeeSubjects).");
+            System.out.println("2. Add a new class(AddClass).");
+            System.out.println("3. See all subjects(SeeSubjects).");
             System.out.println("4. Add a new subject(AddSubject)");
+            System.out.println("4. Exit the application(Exit)");
 
             option = sc.nextLine();
 
             switch (option) {
                 case "SeeClasses":
-                    _controller.CreateSchool();
+                    _controller.ShowClasses(schoolId);
+                    System.out.println("Enter which class you want to see.");
+                    int op;
+                    op = sc.nextInt();
+                    sc.nextLine();
+                    if(op > _controller.GetNrOfClasses() || op < 0)
+                        System.out.println("There is no class with that number.");
+                    else
+                        PrintShowClasses(op);
                     break;
-                case "SelectSchool":
-                    _controller.ShowSchools();
+                case "AddClass":
+                    _controller.CreateClass(schoolId);
+                    break;
+                case "SeeSubjects":
+                    _controller.ShowSubjects(schoolId);
+                    System.out.println("Enter which subject you want to see.");
+                    int op1;
+                    op1 = sc.nextInt();
+                    sc.nextLine();
+                    if(op1 > _controller.GetNrOfSubjects() || op1 < 0)
+                        System.out.println("There is no subject with that number.");
+                    else
+                        PrintShowSubject(op1);
+                    break;
+                case "AddSubject":
+                    _controller.CreateSubject(schoolId);
                     break;
                 case "Exit":
                     System.exit(0);
@@ -70,5 +101,66 @@ public class Main {
                     System.out.println("This option doesn't exist, please enter a correct option.\n");
             }
         }
+    }
+    private static void PrintShowClasses(int classId){
+        while(true){
+            System.out.println("Type out what command you want to execute:");
+            System.out.println("1. Show all students(ShowStudents).");
+            System.out.println("2. Add a new student(AddStudent).");
+            System.out.println("3. Exit the application(Exit).");
+
+            option = sc.nextLine();
+
+            switch (option) {
+                case "AddStudent":
+                    _controller.CreateStudent(classId);
+                    break;
+                case "ShowStudent":
+                    _controller.ShowStudents(classId);
+                    System.out.println("Enter the number of the student you want.");
+                    int op;
+                    op = sc.nextInt();
+                    sc.nextLine();
+                    if(op > _controller.GetNrOfStudents() || op < 0)
+                        System.out.println("There is no student with that number.");
+                    else
+                        PrintSeeClassBookPage(op);
+                    break;
+                case "Exit":
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("This option doesn't exist, please enter a correct option.\n");
+            }
+        }
+    }
+
+    private static void PrintShowSubject(int subjectId){
+        while(true) {
+            System.out.println("Type out what command you want to execute:");
+            System.out.println("1. Show all teachers(ShowTeachers).");
+            System.out.println("2. Add a new teacher(AddTeacher).");
+            System.out.println("3. Exit the application(Exit).");
+
+            option = sc.nextLine();
+
+            switch (option) {
+                case "AddTeacher":
+                    _controller.CreateTeachers(subjectId);
+                    break;
+                case "ShowTeachers":
+                    _controller.ShowTeachers(subjectId);
+                    break;
+                case "Exit":
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("This option doesn't exist, please enter a correct option.\n");
+            }
+        }
+    }
+
+    private static void PrintSeeClassBookPage(int studentId){
+        _controller.ShowClassBookPages(studentId);
     }
 }

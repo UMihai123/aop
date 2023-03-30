@@ -1,23 +1,23 @@
 public interface IController {
     void ShowSchools();
 
-    void ShowClasses();
+    void ShowClasses(int schoolId);
 
-    void ShowStudents();
+    void ShowStudents(int classId);
 
-    void ShowClassBookPages();
+    void ShowClassBookPages(int studentId);
 
-    void ShowTeachers();
+    void ShowTeachers(int subjectId);
 
-    void ShowSubjects();
+    void ShowSubjects(int schoolId);
 
     void CreateSchool();
 
-    void CreateClass();
+    void CreateClass(int schoolId);
 
-    void CreateStudent();
+    void CreateStudent(int schoolId);
 
-    void CreateTeachers();
+    void CreateTeachers(int subjectId);
 
-    void CreateSubject();
+    void CreateSubject(int schoolId);
 }

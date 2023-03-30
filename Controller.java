@@ -10,7 +10,7 @@ public class Controller implements IController{
     private List<Teacher> teachers;
     private List<Subject> subjects;
     private List<Class> classes;
-    Scanner input;
+    private Scanner input;
 
     Controller(){
         schools = new ArrayList<>();
@@ -21,6 +21,25 @@ public class Controller implements IController{
         classes = new ArrayList<>();
 
         input = new Scanner(System.in);
+    }
+
+    public int GetNrOfSchools(){
+        return schools.size();
+    }
+    public int GetNrOfClasses(){
+        return classes.size();
+    }
+    public int GetNrOfSubjects(){
+        return subjects.size();
+    }
+    public int GetNrOfStudents(){
+        return students.size();
+    }
+    public int GetNrOfTeachers(){
+        return teachers.size();
+    }
+    public int GetNrOfCBPs(){
+        return classBookPages.size();
     }
 
     private SchoolLocation ReadSchoolLocation(){
@@ -88,11 +107,8 @@ public class Controller implements IController{
         return new Person(firstName, lastName, email, age, location);
     }
 
-    private Student ReadStudent(){
+    private Student ReadStudent(int classId){
         Person person = ReadPerson();
-        System.out.println("Enter the id of the class in which the student is: ");
-        int classId = input.nextInt();
-        input.nextLine();
 
         Student student = new Student();
         student.setClassId(classId);
@@ -100,6 +116,7 @@ public class Controller implements IController{
         student.setFirstName(person.getFirstName());
         student.setLastName(person.getLastName());
         student.setEmail(person.getEmail());
+        student.setClassId(classId);
         student.setAge(person.getAge());
         student.setAddress(person.getAddress());
         List<ClassBookPage> grades = ReadGrades(student.getStudentId());
@@ -108,7 +125,7 @@ public class Controller implements IController{
         return student;
     }
 
-    private Class ReadClass(){
+    private Class ReadClass(int schoolId){
         System.out.println("Enter the year of the class: ");
         int year = input.nextInt();
         input.nextLine();
@@ -121,17 +138,14 @@ public class Controller implements IController{
         System.out.println("Enter the profile of the class: ");
         String profile = input.nextLine();
 
-        Class c = new Class(year, letter, nrOfStudents, profile);
+        Class c = new Class(schoolId, year, letter, nrOfStudents, profile);
         return c;
     }
 
-    private Teacher ReadTeacher(){
+    private Teacher ReadTeacher(int subjectId){
         Person person = ReadPerson();
         System.out.println("Enter the teachers salary: ");
         double salary = input.nextDouble();
-        input.nextLine();
-        System.out.println("Enter the id of the subject that he teaches: ");
-        int subjectId = input.nextInt();
         input.nextLine();
 
         Teacher teacher = new Teacher();
@@ -146,7 +160,7 @@ public class Controller implements IController{
         return teacher;
     }
 
-    private Subject ReadSubject(){
+    private Subject ReadSubject(int schoolId){
         System.out.println("Enter the subjects name: ");
         String name = input.nextLine();
         System.out.println("Enter the number of hours per week: ");
@@ -156,7 +170,7 @@ public class Controller implements IController{
         boolean hasExam = input.nextBoolean();
         input.nextLine();
 
-        Subject s = new Subject(name, classesPerWeek, hasExam);
+        Subject s = new Subject(schoolId, name, classesPerWeek, hasExam);
         return s;
     }
 
@@ -171,47 +185,57 @@ public class Controller implements IController{
     }
 
     @Override
-    public void ShowClasses() {
+    public void ShowClasses(int schoolId) {
         int i = 1;
         for(Class clasa : classes){
-            System.out.println(i++ + ".\n");
-            System.out.println(clasa);
+            if(clasa.getSchoolId() == schoolId) {
+                System.out.println(i++ + ".\n");
+                System.out.println(clasa);
+            }
         }
     }
 
     @Override
-    public void ShowStudents() {
+    public void ShowStudents(int classId) {
         int i = 1;
         for(Student student : students){
-            System.out.println(i++ + ".\n");
-            System.out.println(student);
+            if(student.getClassId() == classId) {
+                System.out.println(i++ + ".\n");
+                System.out.println(student);
+            }
         }
     }
 
     @Override
-    public void ShowClassBookPages() {
+    public void ShowClassBookPages(int studentId) {
         int i = 1;
         for(ClassBookPage classBookPage : classBookPages){
-            System.out.println(i++ + ".\n");
-            System.out.println(classBookPage);
+            if(classBookPage.getStudent_id() == studentId) {
+                System.out.println(i++ + ".\n");
+                System.out.println(classBookPage);
+            }
         }
     }
 
     @Override
-    public void ShowTeachers() {
+    public void ShowTeachers(int subjectId) {
         int i = 1;
         for(Teacher teacher : teachers){
-            System.out.println(i++ + ".\n");
-            System.out.println(teacher);
+            if(teacher.getSubjectId() == subjectId) {
+                System.out.println(i++ + ".\n");
+                System.out.println(teacher);
+            }
         }
     }
 
     @Override
-    public void ShowSubjects() {
+    public void ShowSubjects(int schoolId) {
         int i = 1;
         for(Subject subject : subjects){
-            System.out.println(i++ + ".\n");
-            System.out.println(subject);
+            if(subject.getSchoolId() == schoolId){
+                System.out.println(i++ + ".\n");
+                System.out.println(subject);
+            }
         }
     }
 
@@ -224,22 +248,22 @@ public class Controller implements IController{
     }
 
     @Override
-    public void CreateClass() {
-        classes.add(ReadClass());
+    public void CreateClass(int schoolId) {
+        classes.add(ReadClass(schoolId));
     }
 
     @Override
-    public void CreateStudent() {
-        students.add(ReadStudent());
+    public void CreateStudent(int classId) {
+        students.add(ReadStudent(classId));
     }
 
     @Override
-    public void CreateTeachers() {
-        teachers.add(ReadTeacher());
+    public void CreateTeachers(int subjectId) {
+        teachers.add(ReadTeacher(subjectId));
     }
 
     @Override
-    public void CreateSubject() {
-        subjects.add(ReadSubject());
+    public void CreateSubject(int schoolId) {
+        subjects.add(ReadSubject(schoolId));
     }
 }

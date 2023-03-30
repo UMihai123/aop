@@ -2,6 +2,8 @@ public class Class {
     private final int classroom_id;
     private static int currentId;
 
+    private int schoolId;
+
     private int year;
 
     private char letter;
@@ -14,16 +16,18 @@ public class Class {
         classroom_id = currentId + 1;
         currentId++;
 
+        schoolId = 0;
         year = 0;
         letter = ' ';
         number_of_students = 0;
         profile = "";
     }
 
-    Class(int year, char letter, int number_of_students, String profile){
+    Class(int schoolId, int year, char letter, int number_of_students, String profile){
         this.classroom_id = currentId + 1;
         currentId++;
 
+        this.schoolId = schoolId;
         this.year = year;
         this.letter = letter;
         this.number_of_students = number_of_students;
@@ -76,5 +80,13 @@ public class Class {
                 " and has the letter " + letter + "\n" +
                 "The class has " + number_of_students + " students " +
                 "and is of the " + profile + " profile";
+    }
+
+    public int getSchoolId() {
+        return schoolId;
+    }
+
+    public void setSchoolId(int schoolId) {
+        this.schoolId = schoolId;
     }
 }

@@ -2,6 +2,7 @@ public class Subject {
     private final int subject_id;
     private static int currentId;
 
+    private int schoolId;
     private String subject_name;
     private  int classes_per_week;
     private  Boolean has_exam;
@@ -9,15 +10,18 @@ public class Subject {
     Subject(){
         subject_id = currentId + 1;
         currentId++;
+
+        schoolId = 0;
         subject_name = "";
         classes_per_week = 0;
         has_exam = false;
     }
 
-    Subject(String subject_name, int classes_per_week, Boolean has_exam){
+    Subject(int schoolId, String subject_name, int classes_per_week, Boolean has_exam){
         subject_id = currentId + 1;
         currentId++;
 
+        this.schoolId = schoolId;
         this.subject_name = subject_name;
         this.classes_per_week = classes_per_week;
         this.has_exam = has_exam;
@@ -63,4 +67,11 @@ public class Subject {
                 ((has_exam)? "Yes, it does have an exam" : "No, it does not have an exam");
     }
 
+    public int getSchoolId() {
+        return schoolId;
+    }
+
+    public void setSchoolId(int schoolId) {
+        this.schoolId = schoolId;
+    }
 }
