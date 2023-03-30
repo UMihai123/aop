@@ -44,6 +44,6 @@ public class School {
     @Override
     public String toString(){
         return "The name of the school is: " + name + "\n" +
-                "The address of the school is: " + address + "\n";
+                "The address of the school is:\n " + address + "\n";
     }
 }

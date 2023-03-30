@@ -28,12 +28,16 @@ public class Student extends Person {
 
     public void CalculateYearlyMark(){
 
-        for(ClassBookPage cbp : grades){
-            cbp.CalculateAverageMark();
-            yearlyMark += cbp.getAverage_mark();
+        if(grades != null){
+            for(ClassBookPage cbp : grades){
+                yearlyMark += cbp.getAverage_mark();
+            }
+            yearlyMark = yearlyMark/grades.size();
+        }
+        else{
+            yearlyMark = 0;
         }
 
-        yearlyMark = yearlyMark/grades.size();
     }
 
     public static void setCurrentId(int id){

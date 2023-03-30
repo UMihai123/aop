@@ -66,14 +66,14 @@ public class Controller implements IController{
     }
 
     private List<ClassBookPage> ReadGrades(int studentId){
-        List<ClassBookPage> grades = null;
+        List<ClassBookPage> grades = new ArrayList<>();
         for(Subject subject : subjects){
             System.out.println("What will be the number of grades for the subject: " + subject.getSubject_name());
             int total = input.nextInt();
             input.nextLine();
             System.out.println("What are the grades?");
-            List<Integer> g = null;
-            for(;total >= 0; total--) {
+            List<Integer> g = new ArrayList<>();
+            for(;total >= 1; total--) {
                 g.add(input.nextInt());
             }
             System.out.println("How many absences does the student have?");
@@ -112,7 +112,6 @@ public class Controller implements IController{
 
         Student student = new Student();
         student.setClassId(classId);
-        student.CalculateYearlyMark();
         student.setFirstName(person.getFirstName());
         student.setLastName(person.getLastName());
         student.setEmail(person.getEmail());
@@ -121,6 +120,7 @@ public class Controller implements IController{
         student.setAddress(person.getAddress());
         List<ClassBookPage> grades = ReadGrades(student.getStudentId());
         student.setGrades(grades);
+        student.CalculateYearlyMark();
 
         return student;
     }
@@ -178,8 +178,9 @@ public class Controller implements IController{
     @Override
     public void ShowSchools() {
         int i = 1;
+        System.out.println();
         for(School school : schools){
-            System.out.println(i++ + ".\n");
+            System.out.println(i++ + ".");
             System.out.println(school);
         }
     }
@@ -187,9 +188,10 @@ public class Controller implements IController{
     @Override
     public void ShowClasses(int schoolId) {
         int i = 1;
+        System.out.println();
         for(Class clasa : classes){
             if(clasa.getSchoolId() == schoolId) {
-                System.out.println(i++ + ".\n");
+                System.out.println(i++ + ".");
                 System.out.println(clasa);
             }
         }
@@ -198,9 +200,10 @@ public class Controller implements IController{
     @Override
     public void ShowStudents(int classId) {
         int i = 1;
+        System.out.println();
         for(Student student : students){
             if(student.getClassId() == classId) {
-                System.out.println(i++ + ".\n");
+                System.out.println(i++ + ".");
                 System.out.println(student);
             }
         }
@@ -209,9 +212,10 @@ public class Controller implements IController{
     @Override
     public void ShowClassBookPages(int studentId) {
         int i = 1;
+        System.out.println();
         for(ClassBookPage classBookPage : classBookPages){
             if(classBookPage.getStudent_id() == studentId) {
-                System.out.println(i++ + ".\n");
+                System.out.println(i++ + ".");
                 System.out.println(classBookPage);
             }
         }
@@ -220,9 +224,10 @@ public class Controller implements IController{
     @Override
     public void ShowTeachers(int subjectId) {
         int i = 1;
+        System.out.println();
         for(Teacher teacher : teachers){
             if(teacher.getSubjectId() == subjectId) {
-                System.out.println(i++ + ".\n");
+                System.out.println(i++ + ".");
                 System.out.println(teacher);
             }
         }
@@ -231,9 +236,10 @@ public class Controller implements IController{
     @Override
     public void ShowSubjects(int schoolId) {
         int i = 1;
+        System.out.println();
         for(Subject subject : subjects){
             if(subject.getSchoolId() == schoolId){
-                System.out.println(i++ + ".\n");
+                System.out.println(i++ + ".");
                 System.out.println(subject);
             }
         }

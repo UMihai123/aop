@@ -94,6 +94,6 @@ public class ClassBookPage {
 
     @Override
     public String toString(){
-        return classbook_id + "\n" + student_id + "\n" + subject_id + "\n" + grades + "\n" + absences + "\n" + average_mark;
+        return student_id + "\n" + subject_id + "\n" + grades + "\n" + absences + "\n" + average_mark;
     }
 }

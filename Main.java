@@ -32,9 +32,11 @@ public class Main {
             option = sc.nextLine();
 
             switch (option) {
+                case "2":
                 case "AddSchool":
                     _controller.CreateSchool();
                     break;
+                case "1":
                 case "SelectSchool":
                     _controller.ShowSchools();
                     System.out.println("Enter the number of the school you want.");
@@ -46,6 +48,7 @@ public class Main {
                     else
                         PrintEnterSchool(op);
                     break;
+                case "3":
                 case "Exit":
                     System.exit(0);
                     break;
@@ -61,11 +64,12 @@ public class Main {
             System.out.println("2. Add a new class(AddClass).");
             System.out.println("3. See all subjects(SeeSubjects).");
             System.out.println("4. Add a new subject(AddSubject)");
-            System.out.println("4. Exit the application(Exit)");
+            System.out.println("5. Go back(Return)");
 
             option = sc.nextLine();
 
             switch (option) {
+                case "1":
                 case "SeeClasses":
                     _controller.ShowClasses(schoolId);
                     System.out.println("Enter which class you want to see.");
@@ -77,9 +81,11 @@ public class Main {
                     else
                         PrintShowClasses(op);
                     break;
+                case "2":
                 case "AddClass":
                     _controller.CreateClass(schoolId);
                     break;
+                case "3":
                 case "SeeSubjects":
                     _controller.ShowSubjects(schoolId);
                     System.out.println("Enter which subject you want to see.");
@@ -91,12 +97,13 @@ public class Main {
                     else
                         PrintShowSubject(op1);
                     break;
+                case "4":
                 case "AddSubject":
                     _controller.CreateSubject(schoolId);
                     break;
-                case "Exit":
-                    System.exit(0);
-                    break;
+                case "5":
+                case "Return":
+                    return;
                 default:
                     System.out.println("This option doesn't exist, please enter a correct option.\n");
             }
@@ -107,14 +114,16 @@ public class Main {
             System.out.println("Type out what command you want to execute:");
             System.out.println("1. Show all students(ShowStudents).");
             System.out.println("2. Add a new student(AddStudent).");
-            System.out.println("3. Exit the application(Exit).");
+            System.out.println("3. Go back(Return)");
 
             option = sc.nextLine();
 
             switch (option) {
+                case "2":
                 case "AddStudent":
                     _controller.CreateStudent(classId);
                     break;
+                case "1":
                 case "ShowStudent":
                     _controller.ShowStudents(classId);
                     System.out.println("Enter the number of the student you want.");
@@ -126,9 +135,9 @@ public class Main {
                     else
                         PrintSeeClassBookPage(op);
                     break;
-                case "Exit":
-                    System.exit(0);
-                    break;
+                case "3":
+                case "Return":
+                    return;
                 default:
                     System.out.println("This option doesn't exist, please enter a correct option.\n");
             }
@@ -140,20 +149,22 @@ public class Main {
             System.out.println("Type out what command you want to execute:");
             System.out.println("1. Show all teachers(ShowTeachers).");
             System.out.println("2. Add a new teacher(AddTeacher).");
-            System.out.println("3. Exit the application(Exit).");
+            System.out.println("3. Go back(Return)");
 
             option = sc.nextLine();
 
             switch (option) {
+                case "2":
                 case "AddTeacher":
                     _controller.CreateTeachers(subjectId);
                     break;
+                case "1":
                 case "ShowTeachers":
                     _controller.ShowTeachers(subjectId);
                     break;
-                case "Exit":
-                    System.exit(0);
-                    break;
+                case "3":
+                case "Return":
+                    return;
                 default:
                     System.out.println("This option doesn't exist, please enter a correct option.\n");
             }
