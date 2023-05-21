@@ -1,9 +1,11 @@
 package view;
 
+import dbConnection.DbConnection;
 import models.*;
+import models.ClassRoom;
 import service.Controller;
 
-import java.lang.Class;
+import java.sql.Connection;
 import java.util.Scanner;
 public class Main {
     public static void main(String args[]) {
@@ -20,7 +22,7 @@ public class Main {
         School.setCurrentId(0);
         Teacher.setCurrentId(0);
         ClassBookPage.setCurrentId(0);
-        Class.setCurrentId(0);
+        ClassRoom.setCurrentId(0);
         Location.setCurrentId(0);
     }
 

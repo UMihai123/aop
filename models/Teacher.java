@@ -46,10 +46,10 @@ public class Teacher extends Person {
 
     @Override
     public String toString(){
-        return "models.Teacher's name is: " + getFirstName() + " " + getLastName() + "\n" +
-                "models.Teacher's e-mail is: " + getEmail() + "\n" +
-                "models.Teacher's age is: " + getAge() + "\n" +
-                "models.Teacher's address is: " + getAddress() + "\n" +
-                "models.Teacher's salary is: " + salary;
+        return "Teacher's name is: " + getFirstName() + " " + getLastName() + "\n" +
+                "Teacher's e-mail is: " + getEmail() + "\n" +
+                "Teacher's age is: " + getAge() + "\n" +
+                "Teacher's address is: " + getAddress() + "\n" +
+                "Teacher's salary is: " + salary;
     }
 }

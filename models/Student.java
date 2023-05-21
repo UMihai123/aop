@@ -75,10 +75,10 @@ public class Student extends Person {
     }
 
     public String toString(){
-        return "models.Student's name is: " + getFirstName() + " " + getLastName() + "\n" +
-                "models.Student's e-mail is: " + getEmail() + "\n" +
-                "models.Student's age is: " + getAge() + "\n" +
-                "models.Student's yearly mark is: " + yearlyMark + "\n" +
+        return "Student's name is: " + getFirstName() + " " + getLastName() + "\n" +
+                "Student's e-mail is: " + getEmail() + "\n" +
+                "Student's age is: " + getAge() + "\n" +
+                "Student's yearly mark is: " + yearlyMark + "\n" +
                 "Part of class with id: " + classId + "\n";
     }
 }

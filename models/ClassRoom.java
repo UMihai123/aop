@@ -1,6 +1,6 @@
 package models;
 
-public class Class {
+public class ClassRoom {
     private final int classroom_id;
     private static int currentId;
 
@@ -14,7 +14,7 @@ public class Class {
 
     private String profile;
 
-    Class(int schoolId, int year, char letter, int number_of_students, String profile){
+    public ClassRoom(int schoolId, int year, char letter, int number_of_students, String profile){
         this.classroom_id = currentId + 1;
         currentId++;
 

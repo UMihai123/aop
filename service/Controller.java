@@ -1,8 +1,12 @@
 package service;
 
+import dbConnection.DbConnection;
 import models.*;
 
 import java.lang.Class;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,10 +18,15 @@ public class Controller implements IController {
     private List<ClassBookPage> classBookPages;
     private List<Teacher> teachers;
     private List<Subject> subjects;
-    private List<Class> classes;
+    private List<ClassRoom> classes;
     private Scanner input;
+    private DbConnection _db;
 
     public Controller(){
+        _db = new DbConnection();
+        if(_db.isNull()){
+            System.exit(-1);
+        }
         schools = new ArrayList<>();
         students = new ArrayList<>();
         classBookPages = new ArrayList<>();
@@ -124,7 +133,7 @@ public class Controller implements IController {
         return student;
     }
 
-    private Class ReadClass(int schoolId){
+    private ClassRoom ReadClass(int schoolId){
         System.out.println("Enter the year of the class: ");
         int year = input.nextInt();
         input.nextLine();
@@ -137,7 +146,7 @@ public class Controller implements IController {
         System.out.println("Enter the profile of the class: ");
         String profile = input.nextLine();
 
-        Class c = new Class(schoolId, year, letter, nrOfStudents, profile);
+        ClassRoom c = new ClassRoom(schoolId, year, letter, nrOfStudents, profile);
         return c;
     }
 
@@ -188,7 +197,7 @@ public class Controller implements IController {
     public void ShowClasses(int schoolId) {
         int i = 1;
         System.out.println();
-        for(Class clasa : classes){
+        for(ClassRoom clasa : classes){
             if(clasa.getSchoolId() == schoolId) {
                 System.out.println(i++ + ".");
                 System.out.println(clasa);
@@ -223,6 +232,18 @@ public class Controller implements IController {
     @Override
     public void ShowTeachers(int subjectId) {
         int i = 1;
+        String query = "SELECT * FROM teachers";
+        ResultSet rs = _db.executeStatement(query);
+        try{
+            while(rs.next()){
+                Teacher t = new Teacher();
+                t.setFirstName(rs.getString("firstName"));
+                teachers.add(t);
+            }
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
         System.out.println();
         for(Teacher teacher : teachers){
             if(teacher.getSubjectId() == subjectId) {
@@ -249,7 +270,12 @@ public class Controller implements IController {
         System.out.println("Enter the name of the school: ");
         String name = input.nextLine();
 
-        schools.add(new School(name, ReadSchoolLocation()));
+        SchoolLocation sl = ReadSchoolLocation();
+
+        String query = "INSERT INTO location (street, city, number, seismicRisk, area) VALUES ("
+                            + sl.getStreet() + ", " + sl.getCity() + ", " + sl.getNumber() + ", " + sl.getSeismicRisk() + ", " + sl.getArea() + ")";
+
+        _db.executeStatement(query);
     }
 
     @Override

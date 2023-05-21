@@ -67,9 +67,9 @@ public class Person {
 
     @Override
     public String toString(){
-        return "models.Person's name is: " + firstName + " " + lastName + "\n" +
-                "models.Person's e-mail is: " + email + "\n" +
-                "models.Person's age is: " + age + "\n" +
-                "models.Person's address is: " + address;
+        return "Person's name is: " + firstName + " " + lastName + "\n" +
+                "Person's e-mail is: " + email + "\n" +
+                "Person's age is: " + age + "\n" +
+                "Person's address is: " + address;
     }
 }
