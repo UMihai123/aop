@@ -10,7 +10,7 @@ public class School {
     private String name;
     private SchoolLocation address;
 
-    School(){
+    public School(){
         schoolId = currentId + 1;
         currentId++;
 

@@ -186,6 +186,19 @@ public class Controller implements IController {
     @Override
     public void ShowSchools() {
         int i = 1;
+        String query = "SELECT * FROM schools";
+        ResultSet rs = _db.executeStatement(query);
+        try{
+            while(rs.next()){
+                School s = new School();
+                s.setName(rs.getString("Name"));
+
+                teachers.add(t);
+            }
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
         System.out.println();
         for(School school : schools){
             System.out.println(i++ + ".");
@@ -196,6 +209,21 @@ public class Controller implements IController {
     @Override
     public void ShowClasses(int schoolId) {
         int i = 1;
+        String query = "SELECT * FROM classes";
+        ResultSet rs = _db.executeStatement(query);
+        try{
+            while(rs.next()){
+                ClassRoom c = new ClassRoom();
+                s.setYear(rs.getInt("Year"));
+                s.setLetter(rs.getString("Letter"));
+                s.setProfile(rs.getString("Profile"));
+                s.setNumber_of_students(rs.getInt("NumberOfStudents"));
+                classes.add(c);
+            }
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
         System.out.println();
         for(ClassRoom clasa : classes){
             if(clasa.getSchoolId() == schoolId) {
@@ -208,6 +236,19 @@ public class Controller implements IController {
     @Override
     public void ShowStudents(int classId) {
         int i = 1;
+        String query = "SELECT * FROM students";
+        ResultSet rs = _db.executeStatement(query);
+        try{
+            while(rs.next()){
+                Student s = new Student();
+                s.setYearlyMark(rs.getInt("YearlyMark"));
+                s.setClassId(rs.getInt("ClassId"));
+                students.add(s);
+            }
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
         System.out.println();
         for(Student student : students){
             if(student.getClassId() == classId) {
@@ -220,6 +261,22 @@ public class Controller implements IController {
     @Override
     public void ShowClassBookPages(int studentId) {
         int i = 1;
+        String query = "SELECT * FROM classBookPages";
+        ResultSet rs = _db.executeStatement(query);
+        try{
+            while(rs.next()){
+                ClassBookPage c = new ClassBookPage();
+                c.setAbsences(rs.getInt("absences"));
+                c.setGrades(rs.("grades"));
+                c.setStudent_id(rs.getInt("studentId"));
+                c.setAverage_mark(rs.getInt("averageMark"));
+                c.set
+                students.add(s);
+            }
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
         System.out.println();
         for(ClassBookPage classBookPage : classBookPages){
             if(classBookPage.getStudent_id() == studentId) {
@@ -238,6 +295,12 @@ public class Controller implements IController {
             while(rs.next()){
                 Teacher t = new Teacher();
                 t.setFirstName(rs.getString("firstName"));
+                t.setLastName(rs.getString("lastName"));
+                t.setSalary(rs.getDouble("salary"));
+                t.setAge(rs.getInt("age"));
+                t.setEmail(rs.getString("email"));
+                t.setSubjectId(rs.getInt("subjectId"));
+
                 teachers.add(t);
             }
         }
