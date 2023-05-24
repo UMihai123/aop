@@ -5,7 +5,7 @@ public class SchoolLocation extends Location {
     private String seismicRisk;
     private double area;
 
-    SchoolLocation(){
+    public SchoolLocation(){
         seismicRisk = "";
         area = 0.0;
     }

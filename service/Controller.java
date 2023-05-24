@@ -192,8 +192,24 @@ public class Controller implements IController {
             while(rs.next()){
                 School s = new School();
                 s.setName(rs.getString("Name"));
-
-                teachers.add(t);
+                int id = rs.getInt("locationId");
+                query = "SELECT * FROM location where locationId == " + id;
+                ResultSet rs2 = _db.executeStatement(query);
+                try{
+                    while(rs2.next()){
+                        SchoolLocation l = new SchoolLocation();
+                        l.setArea(rs2.getDouble("Area"));
+                        l.setCity(rs2.getString("City"));
+                        l.setSeismicRisk(rs2.getString("SeismicRisk"));
+                        l.setNumber(rs2.getInt("Number"));
+                        l.setStreet(rs2.getString("Street"));
+                        s.setLocation(l);
+                    }
+                }
+                catch(SQLException ex){
+                    ex.printStackTrace();
+                }
+                schools.add(s);
             }
         }
         catch(SQLException ex){
