@@ -252,6 +252,7 @@ public class Controller implements IController {
         }finally{
             try { rs.close(); } catch(SQLException ex) {}
         }
+        _log.writeStringToCSV("CLASS,Afisare, " + ZonedDateTime.now(TimeZone.getTimeZone("Europe/Bucharest").toZoneId()).format(DateTimeFormatter.ofPattern("dd/MM/yyyy 'at' HH:mm z")));
         System.out.println();
         for(ClassRoom clasa : classes){
             if(clasa.getSchoolId() == schoolId) {
@@ -308,6 +309,7 @@ public class Controller implements IController {
         }finally{
             try { rs.close(); } catch(SQLException ex) {}
         }
+        _log.writeStringToCSV("STUDENT,Afisare, " + ZonedDateTime.now(TimeZone.getTimeZone("Europe/Bucharest").toZoneId()).format(DateTimeFormatter.ofPattern("dd/MM/yyyy 'at' HH:mm z")));
         System.out.println();
         for(Student student : students){
             if(student.getClassId() == classId) {
@@ -349,6 +351,7 @@ public class Controller implements IController {
         }finally{
             try { rs.close(); } catch(SQLException ex) {}
         }
+        _log.writeStringToCSV("CLASSBOOKPAGE,Afisare, " + ZonedDateTime.now(TimeZone.getTimeZone("Europe/Bucharest").toZoneId()).format(DateTimeFormatter.ofPattern("dd/MM/yyyy 'at' HH:mm z")));
         System.out.println();
         for(ClassBookPage classBookPage : classBookPages){
             if(classBookPage.getStudent_id() == studentId) {
@@ -381,6 +384,7 @@ public class Controller implements IController {
         }finally{
             try { rs.close(); } catch(SQLException ex) {}
         }
+        _log.writeStringToCSV("TEACHER,Afisare, " + ZonedDateTime.now(TimeZone.getTimeZone("Europe/Bucharest").toZoneId()).format(DateTimeFormatter.ofPattern("dd/MM/yyyy 'at' HH:mm z")));
         System.out.println();
         for(Teacher teacher : teachers){
             if(teacher.getSubjectId() == subjectId) {
@@ -411,6 +415,7 @@ public class Controller implements IController {
         }finally{
             try { rs.close(); } catch(SQLException ex) {}
         }
+        _log.writeStringToCSV("SUBJECT,Afisare, " + ZonedDateTime.now(TimeZone.getTimeZone("Europe/Bucharest").toZoneId()).format(DateTimeFormatter.ofPattern("dd/MM/yyyy 'at' HH:mm z")));
         System.out.println();
         for(Subject subject : subjects){
             if(subject.getSchoolId() == schoolId){
