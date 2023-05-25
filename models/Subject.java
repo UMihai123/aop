@@ -9,7 +9,7 @@ public class Subject {
     private  int classes_per_week;
     private  Boolean has_exam;
 
-    Subject(){
+    public Subject(){
         subject_id = currentId + 1;
         currentId++;
 

@@ -5,7 +5,6 @@ public class DbConnection {
     static final String connectionString = "jdbc:mysql://localhost:3306/pao";
     static final String username = "root";
     static final String password = "parola123";
-    private Statement statement;
     private Connection conn;
 
     public DbConnection(){
@@ -15,7 +14,6 @@ public class DbConnection {
     public void openConnection(){
         try{
             conn = DriverManager.getConnection(connectionString, username, password);
-            statement = conn.createStatement();
         }
         catch(SQLException error){
             error.printStackTrace();
@@ -29,11 +27,22 @@ public class DbConnection {
 
     public ResultSet executeStatement(String query){
         try {
+            Statement statement = conn.createStatement();
             return statement.executeQuery(query);
         }
         catch(SQLException ex){
             ex.printStackTrace();
             return null;
+        }
+    }
+
+    public void executeInsert(String query){
+        try{
+            Statement statement = conn.createStatement();
+            statement.executeUpdate(query);
+        }
+        catch(SQLException ex){
+            ex.printStackTrace();
         }
     }
 }

@@ -14,6 +14,17 @@ public class ClassRoom {
 
     private String profile;
 
+    public ClassRoom(){
+        this.classroom_id = currentId + 1;
+        currentId++;
+
+        this.schoolId = 0;
+        this.year = 0;
+        this.letter = ' ';
+        this.number_of_students = 0;
+        this.profile = "";
+    }
+
     public ClassRoom(int schoolId, int year, char letter, int number_of_students, String profile){
         this.classroom_id = currentId + 1;
         currentId++;

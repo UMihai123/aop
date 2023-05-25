@@ -23,21 +23,21 @@ public class Student extends Person {
         studentId = CURRENT_ID + 1;
         CURRENT_ID++;
 
+        System.out.println(yearlyMark);
         this.yearlyMark = yearlyMark;
         this.classId = classId;
         this.grades = grades;
     }
 
-    public void CalculateYearlyMark(){
+    public void CalculateYearlyMark() {
 
-        if(grades != null){
-            for(ClassBookPage cbp : grades){
+        if (grades.size() != 0) {
+            for (ClassBookPage cbp : grades) {
                 yearlyMark += cbp.getAverage_mark();
             }
-            yearlyMark = yearlyMark/grades.size();
-        }
-        else{
-            yearlyMark = 0;
+            yearlyMark = yearlyMark / grades.size();
+        } else {
+            yearlyMark = 0.0;
         }
 
     }
