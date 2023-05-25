@@ -1,5 +1,6 @@
 package service;
 
+import Audit.Log;
 import dbConnection.DbConnection;
 import models.*;
 
@@ -7,10 +8,10 @@ import java.lang.Class;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.text.SimpleDateFormat;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 public class Controller implements IController {
 
@@ -22,9 +23,11 @@ public class Controller implements IController {
     private List<ClassRoom> classes;
     private Scanner input;
     private DbConnection _db;
+    private Log _log;
 
     public Controller(){
         _db = new DbConnection();
+        _log = new Log("C:\\Users\\udris\\IdeaProjects\\aop\\Audit\\Log.csv");
         if(_db.isNull()){
             System.exit(-1);
         }
@@ -130,9 +133,6 @@ public class Controller implements IController {
         List<ClassBookPage> grades = ReadGrades(student.getStudentId());
         student.setGrades(grades);
         student.CalculateYearlyMark();
-        if(student.getYearlyMark() == 0){
-            System.out.println("Bag pula ba");
-        }
 
         return student;
     }
@@ -223,6 +223,7 @@ public class Controller implements IController {
         }finally{
             try { rs.close(); } catch(SQLException ex) {}
         }
+        _log.writeStringToCSV("SCHOOL,Afisare, " + ZonedDateTime.now(TimeZone.getTimeZone("Europe/Bucharest").toZoneId()).format(DateTimeFormatter.ofPattern("dd/MM/yyyy 'at' HH:mm z")));
         System.out.println();
         for(School school : schools){
             System.out.println(i++ + ".");
@@ -271,7 +272,7 @@ public class Controller implements IController {
                 s.setFirstName(rs.getString("firstName"));
                 s.setLastName(rs.getString("lastName"));
                 s.setEmail(rs.getString("email"));
-
+                s.setAge(rs.getInt("age"));
                 s.setYearlyMark(rs.getInt("yearlyMark"));
                 s.setClassId(rs.getInt("classId"));
                 query = "SELECT * FROM classbookpage where student_id = " + s.getStudentId();
@@ -504,7 +505,7 @@ public class Controller implements IController {
         try {
             if(rs.next()){
                 int id = rs.getInt(1);
-                query = "INSERT INTO teacher (firstName, lastName, email, age, location_id, salary, subjectId) VALUES ('"
+                query = "INSERT INTO teacher (firstName, lastName, email, age, locationId, salary, subjectId) VALUES ('"
                         + t.getFirstName() + "', '" + t.getLastName() + "', '" + t.getEmail() + "', " + t.getAge() + ", " + id + ", " + t.getSalary() + ", " + t.getSubjectId() + ")";
                 _db.executeInsert(query);
             }
